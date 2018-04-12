@@ -1,0 +1,36 @@
+.col-md-4 img{
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+main h1{
+  margin: 1em 0em;
+  text-align: center;
+}
+.panel-body a{
+  font-size: 3em;
+  text-align: center;
+}
+/*stuff for img hover*/
+.imgWrap{
+  margin: 0px;
+}
+
+.imgDets{
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: gray;
+  color: purple;
+  visibility: hidden;
+  opacity: 0;
+  height: 50%;
+  width: 100%;
+}
+.imgWrap:hover .imgDets{
+  visibility: visible;
+  opacity: .75;
+}
