@@ -57,7 +57,7 @@ CREATE TABLE `Comments` (
   `Dislikes` int(11) NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-INSERT INTO `comments` VALUES (1,1,1,"Good Picture",0,0,'1998-05-04 00:00:00'),
+INSERT INTO `Comments` VALUES (1,1,1,"Good Picture",0,0,'1998-05-04 00:00:00'),
 (2,2,2,"Hahaha thats broken!",0,0,'1998-05-04 00:00:00');
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE `Image` (
   `Privacy` int(1) NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-INSERT INTO `image` VALUES (1,1,"brokeCar.jpg","Broken Car","Its a car that is broken",0,0,0,1,'1998-05-04 00:00:00')
+INSERT INTO `Image` VALUES (1,1,"brokeCar.jpg","Broken Car","Its a car that is broken",0,0,0,1,'1998-05-04 00:00:00')
 ,(2,2,"brokeChair.jpg","Broken Chair","Its a chair",0,0,0,0,'1998-05-04 00:00:00')
 ,(3,2,"brokeHouse.jpg","Broken House","Its a house that is Broken",0,0,0,0,'1998-05-04 00:00:00');
 -- --------------------------------------------------------
@@ -136,7 +136,7 @@ CREATE TABLE `User` (
   `LastName` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `user` VALUES (1,"Nick","Pass123","test@test.com",'1998-05-04 00:00:00',"Nick","Pawlawski"),
+INSERT INTO `User` VALUES (1,"Nick","Pass123","test@test.com",'1998-05-04 00:00:00',"Nick","Pawlawski"),
 (2,"Austin","Pass123","test@test.com",'1998-05-04 00:00:00',"Austin","Ragotzy");
 
 --
@@ -235,4 +235,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
