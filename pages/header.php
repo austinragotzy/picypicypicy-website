@@ -17,7 +17,7 @@
             <a class="navbar-brand" href="#">tr&#233; Picy</a>
           </div>
           <ul class="nav navbar-nav pull-right">
-            <li><a href="#">Sign In</a></li>
+            <li><a href="login.php">Sign In</a></li>
             <li><a href="#">Sign Up</a></li>
             <form class="navbar-form navbar-left" action="index.html" method="post">
               <div class="input-group">
