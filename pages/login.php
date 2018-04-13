@@ -49,7 +49,7 @@
       <form class="" action="login.php" method="post">
         <input type="text" name="user" placeholder="username">
         <input type="password" name="pass" placeholder="password">
-        <button type="submit" name="go"></button>
+        <button type="submit" name="">Go</button>
       </form>
     </body>
   </body>

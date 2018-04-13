@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@ session_start();
     <div class="container">
       <div class="col-md-2">  <!-- start left navigation rail column -->
         <?php include 'side.php'; ?>
-      </div>  <!-- end left navigation rail --> 
+      </div>  <!-- end left navigation rail -->
 
       <div class="col-md-10">  <!-- start main content column -->   
         <h1>Picyest Pics</h1>
