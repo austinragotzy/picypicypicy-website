@@ -132,7 +132,7 @@ CREATE TABLE `User` (
   `Password` varchar(255) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
   `DateOfRegistration` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `FisrtName` varchar(255) DEFAULT NULL,
+  `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

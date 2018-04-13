@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(empty($_SESSION['logged_in']))
+if(empty($_SESSION['loggedIn']))
 {
-    //header('Location: login.php');
-    //exit;
+    header('Location: login.php');
+    exit;
 }
 
 
@@ -78,7 +78,7 @@ if(empty($_SESSION['logged_in']))
               <div class="panel panel-primary">
                 <div class="panel-heading"><h4>User Information</h4></div>
                 <ul class="list-group">
-                  <li class="list-group-item"><strong class="text-primary">Name</strong><br> <?php ?> </li>
+                  <li class="list-group-item"><strong class="text-primary">Name</strong><br> <?php echo $_SESSION["fName"]." ".$_SESSION["lName"]; ?> </li>
                   <li class="list-group-item"><strong class="text-primary">Address</strong><br> <?php  ?></li>
                   <li class="list-group-item"><strong class="text-primary">City, Country</strong><br> <?php  ?></li>
                   <li class="list-group-item"><strong class="text-primary">Phone</strong><br> <?php  ?> </li>
