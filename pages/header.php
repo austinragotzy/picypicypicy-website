@@ -36,7 +36,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="#">Over There</a></li>
             <li><a href="#">Under There</a></li>
             <li><a href="#">Under Wear</a></li>
