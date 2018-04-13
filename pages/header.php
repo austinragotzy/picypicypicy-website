@@ -17,7 +17,6 @@
             <a class="navbar-brand" href="#">tr&#233; Picy</a>
           </div>
           <ul class="nav navbar-nav pull-right">
-<<<<<<< HEAD
             <?php
             
               if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"])
@@ -31,10 +30,6 @@
             ?>
             
             <li><a href="#">Sign Up</a></li>
-=======
-            <li><a href="login.php">Sign In</a></li>
-            <li><a href="signup.php">Sign Up</a></li>
->>>>>>> 534906231f4c9bdf0a2a09d63773c28599b23b86
             <form class="navbar-form navbar-left" action="index.html" method="post">
               <div class="input-group">
                 <div class="form-group">
