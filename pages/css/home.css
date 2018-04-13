@@ -7,8 +7,9 @@
 main h1{
   margin: 1em 0em;
   text-align: center;
+  background-color: none;
 }
-.panel-body a{
+.panel-body p{
   font-size: 3em;
   text-align: center;
 }

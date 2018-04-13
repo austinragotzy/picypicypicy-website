@@ -37,10 +37,12 @@
         <div style="margin-top: 1em;" class="panel panel-default">
           <div class="panel-heading">Picyest Tags</div>
           <div class="panel-body">
-            <a href="#">tag</a>,
-            <a href="#">taggy</a>,
-            <a href="#">taggle</a>,
-            <a href="#">tags</a>
+            <p>
+              <a href="#">tag</a>,
+              <a href="#">taggy</a>,
+              <a href="#">taggle</a>,
+              <a href="#">tags</a>
+            </p>
           </div>
         </div>
 
