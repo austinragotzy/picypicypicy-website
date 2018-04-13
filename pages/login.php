@@ -23,6 +23,8 @@
         $_SESSION['fName'] = $uAccount['FirstName'];
         $_SESSION['lName'] = $uAccount['LastName'];
 
+        $_SESSION['date'] = $uAccount['DateOfRegistration'];
+
         header("location: index.php");
 
       }else {

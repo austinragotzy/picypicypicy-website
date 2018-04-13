@@ -17,7 +17,7 @@ session_start();
         <?php include 'side.php'; ?>
       </div>  <!-- end left navigation rail -->
 
-      <div class="col-md-10">  <!-- start main content column -->
+      <div class="col-md-10">  <!-- start main content column -->   
         <h1>Picyest Pics</h1>
         <div class="row">
           <div class="col-md-4">

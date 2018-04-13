@@ -6,12 +6,27 @@ if(empty($_SESSION['loggedIn']))
     header('Location: login.php');
     exit;
 }
+include 'connect.php';
+$message = null;
 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    try
+    {
+        $sql = "UPDATE user SET password = ? where UID = ".$_SESSION["UID"];
+        $st = $pdo->prepare($sql);
+        $st->bindValue(1, $_POST["pass1"]);
+        $st->execute();
+        $message = "Password Changed";
+    }
+    catch (PDOException $e)
+    {   
+        $message = "Error with changing password";
+    }
+    
+}
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,26 +72,26 @@ if(empty($_SESSION['loggedIn']))
 
      <!-- Customer panel  -->
      <div class="panel panel-danger spaceabove">           
-       <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
+       <div class="panel-heading"><h4><?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Page</h4></div>
       
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="panel panel-primary">
-              <div class="panel-heading"><h4>Login Details</h4></div>
-              <ul class="list-group">
-                <li class="list-group-item"><strong class="text-primary">Username</strong><br> <?php echo $_SESSION["userName"];  ?> </li>
-                <li class="list-group-item"><strong class="text-primary">Change Password</strong><br><button onclick="window.location.href = 'changePassword.php'" class="button" href="changePassword.php">Change Password</li>
-                <li class="list-group-item"><strong class="text-primary">User Since</strong><br>  <?php echo $_SESSION["date"]; ?></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><h4>User Information</h4></div>
+              <div class="panel-heading"><h4>Change Password</h4></div>
                 <ul class="list-group">
-                  <li class="list-group-item"><strong class="text-primary">Name</strong><br> <?php echo $_SESSION["fName"]." ".$_SESSION["lName"]; ?> </li>
-                  <li class="list-group-item"><strong class="text-primary">E-Mail</strong><br> <?php echo $_SESSION["email"]; ?></li>
+                    <form action = "changePassword.php" method = "POST">
+                        <?php
+                            if($message != null)
+                            {
+                                echo '<li class="list-group-item"><strong style="color:red;" class="text-primary">'.$message.'</strong> </li>';
+                            }
+                        ?>
+
+                        <li class="list-group-item"><strong class="text-primary">New Password</strong><br> <input type = "text" name = "pass1" placeholder = "New Password"> </li>
+                        
+                        <li class="list-group-item"><strong class="text-primary">Submit</strong><br> <input type = "submit" value = "Change Password"> </li>
+                    </form>
                 </ul>
               </div>
             </div>
@@ -87,9 +102,7 @@ if(empty($_SESSION['loggedIn']))
 
     </div>  <!-- end main content column -->
 
-    <div class = "container">
-        
-    </div>
+    
 
   </div>  <!-- end main content row -->
 </div>   <!-- end container -->
