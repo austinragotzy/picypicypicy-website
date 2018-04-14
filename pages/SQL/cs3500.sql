@@ -80,7 +80,19 @@ CREATE TABLE `Image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT INTO `Image` VALUES (1,1,"brokeCar.jpg","Broken Car","Its a car that is broken",0,0,0,1,'1998-05-04 00:00:00')
 ,(2,2,"brokeChair.jpg","Broken Chair","Its a chair",0,0,0,0,'1998-05-04 00:00:00')
-,(3,2,"brokeHouse.jpg","Broken House","Its a house that is Broken",0,0,0,0,'1998-05-04 00:00:00');
+,(3,3,"brokeHouse.jpg","Broken House","Its a house that is Broken",0,0,0,0,'1998-05-04 00:00:00')
+,(4,4,"1.jpg","First Picture","First Description",0,0,0,0,'1998-05-04 00:00:00')
+,(5,4,"2.jpg","Second Picture","Second Description",0,0,0,0,'1998-05-04 00:00:00')
+,(6,2,"3.jpg","Third Picture","Third Description",0,0,0,0,'1998-05-04 00:00:00')
+,(7,1,"4.jpg","Fourth Picture","Fourth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(8,1,"5.jpg","Fifth Picture","Fifth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(9,2,"6.jpg","Sixth Picture","Sixth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(10,3,"7.jpg","Seventh Picture","Seventh Description",0,0,0,0,'1998-05-04 00:00:00')
+,(11,1,"8.jpg","Eighth Picture","Eighth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(12,4,"9.jpg","Ninth Picture","Ninth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(13,2,"10.jpg","Tenth Picture","Tenth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(14,3,"11.jpg","Elevendth Picture","Elevendth Description",0,0,0,0,'1998-05-04 00:00:00')
+,(15,1,"12.jpg","Twelvendth Picture","Twelvendth Description",0,0,0,0,'1998-05-04 00:00:00');
 -- --------------------------------------------------------
 
 --
@@ -137,7 +149,9 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `User` VALUES (1,"Nick","Pass123","test@test.com",'1998-05-04 00:00:00',"Nick","Pawlawski"),
-(2,"Austin","Pass123","test@test.com",'1998-05-04 00:00:00',"Austin","Ragotzy");
+(2,"Austin","Pass123","test@test.com",'1998-05-04 00:00:00',"Austin","Ragotzy"),
+(3,"Fake1","Pass123","test@test.com",'1998-05-04 00:00:00',"Fake1FN","Fake1LN"),
+(4,"Fake2","Pass123","test@test.com",'1998-05-04 00:00:00',"Fake2FN","Fake2LN");
 
 --
 -- Indexes for dumped tables

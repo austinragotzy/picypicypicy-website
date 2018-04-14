@@ -56,9 +56,8 @@ if(empty($_SESSION['loggedIn']))
    <div class="col-md-10">  <!-- start main content column -->
 
      <!-- Customer panel  -->
-     <div class="panel panel-danger spaceabove">           
-       <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
-      
+    <div class="panel panel-danger spaceabove">           
+      <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-6">
@@ -86,12 +85,31 @@ if(empty($_SESSION['loggedIn']))
         <br>
 
     </div>  <!-- end main content column -->
+  </div> 
 
     <div class = "container">
+    <div class="panel panel-danger spaceabove">           
+      <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Pictures</h4></div>
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading"><h4>Image</h4></div>
+              <ul class="list-group">
         
+                <img class = "text-center" style = "width:100%;" src = "images/brokeCar.jpg">
+              </ul>
+              </div>
+            </div>
+          </div>
+
+
+        </div>           
+      </div>
     </div>
 
-  </div>  <!-- end main content row -->
+   <!-- end main content row -->
 </div>   <!-- end container -->
 
 
