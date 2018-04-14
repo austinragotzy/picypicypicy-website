@@ -5,30 +5,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/header.css">
     <title></title>
   </head>
   <body>
-    <header>
+    <footer>
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#">tr&#233; Picy</a>
           </div>
           <ul class="nav navbar-nav pull-right">
-            <?php
-
-              if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"])
-              {
-                echo '<li><a href="logout.php">Sign Out</a></li>';
-              }
-              else
-              {
-                echo '<li><a href="login.php">Sign In</a></li>';
-              }
-            ?>
-
+            <li><a href="login.php">Sign In</a></li>
             <li><a href="signup.php">Sign Up</a></li>
             <form class="navbar-form navbar-left" action="index.html" method="post">
               <div class="input-group">
@@ -43,19 +30,6 @@
           </ul>
         </div>
       </nav>
-      <h1>Picy! Picy! Picy!</h1>
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <ul class="nav navbar-nav">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#">Over There</a></li>
-            <li><a href="#">Under There</a></li>
-            <li><a href="#">Under Wear</a></li>
-            <li><a href="#">Great Place</a></li>
-            <li><a href="#">Shitty Place</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    </footer>
   </body>
 </html>
