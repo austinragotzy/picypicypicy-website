@@ -1,0 +1,23 @@
+.commenter{
+  color: purple;
+  text-decoration: overline;
+  font-size: 1.5em;
+}
+.replier{
+  color: orange;
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+.panel-body summary p{
+  font-size: 1em;
+  text-align: left;
+}
+button, p{
+  display: inline-block;
+}
+.commenter-row{
+  background-color: lightblue;
+}
+.replier-row{
+  background-color: pink;
+}

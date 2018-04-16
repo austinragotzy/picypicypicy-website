@@ -92,6 +92,7 @@
             </div>
           </div>
         </div>
+        <?php include 'comments.php'; ?>
       </div>
     </div>
     <?php include 'footer.php'; ?>

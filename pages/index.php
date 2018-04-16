@@ -17,7 +17,7 @@ session_start();
         <?php include 'side.php'; ?>
       </div>  <!-- end left navigation rail -->
 
-      <div class="col-md-10">  <!-- start main content column -->   
+      <div class="col-md-10">  <!-- start main content column -->
         <h1>Picyest Pics</h1>
         <div class="row">
           <div class="col-md-4">
@@ -42,7 +42,7 @@ session_start();
         <div style="margin-top: 1em;" class="panel panel-default">
           <div class="panel-heading">Picyest Tags</div>
           <div class="panel-body">
-            <p>
+            <p class="tags">
               <a href="#">tag</a>,
               <a href="#">taggy</a>,
               <a href="#">taggle</a>,
