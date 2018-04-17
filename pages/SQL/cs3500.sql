@@ -40,6 +40,8 @@ CREATE TABLE `CommentReply` (
   `Comment` longtext NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO 'CommentReply' VALUES (1,2,1,0,0,"no this picture sucks dude", '1999-05-04 00:00:00'),
+(2,1,2,0,0,"lol true that thing is busted", '1998-12-04 00:00:00');
 
 -- --------------------------------------------------------
 
