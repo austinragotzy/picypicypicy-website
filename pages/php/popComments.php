@@ -1,4 +1,30 @@
 <?php
+if(isset($_POST['like'])){
+  try {
+    $sql = "UPDATE Comments SET Likes = Likes + 1 WHERE CommentID = ?";
+    $pdo->beginTransaction();
+    $likeUpST = $pdo->prepare($sql);
+    $likeUpST->bindValue(1, $_POST['like']);
+    $likeUpST->execute();
+    $pdo->commit();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
+
+}
+if(isset($_POST['dislike'])){
+  try {
+    $sql = "UPDATE Comments SET Dislikes = Dislikes + 1 WHERE CommentID = ?";
+    $pdo->beginTransaction();
+    $likeUpST = $pdo->prepare($sql);
+    $likeUpST->bindValue(1, $_POST['dislike']);
+    $likeUpST->execute();
+    $pdo->commit();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
+
+}
 //i will clean this up later hopefully
 include 'connect.php';
 try {
@@ -38,11 +64,11 @@ while($commentTup = $commentST->fetch()){
         <p><span class="commenter">'.$commenterTup['Username'].': </span>'.$commentTup['Comment'].'</p><br>
       </div>
       <div class="row cr">
-        <form class="" action="#" method="post">
+        <form class="" action="image.php?img='.$_GET['img'].'" method="post">
           <p>'.$commentTup['Likes'].'</p>
-          <button type="submit" name="like" value="like"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+          <button type="submit" name="like" value="'.$commentTup['CommentID'].'"><span class="glyphicon glyphicon-thumbs-up"></span></button>
           <p>'.$commentTup['Dislikes'].'</p>
-          <button type="submit" name="dislike" value="dislike"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <button type="submit" name="dislike" value="'.$commentTup['CommentID'].'"><span class="glyphicon glyphicon-thumbs-down"></span></button>
           <p class="pull-right">'.$numRep['replies'].' replies</p>
         </form>
       </div>
