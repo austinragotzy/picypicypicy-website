@@ -16,7 +16,7 @@ if(empty($_SESSION['loggedIn']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta http-equiv="Content-Type" content="text/html; 
+ <meta http-equiv="Content-Type" content="text/html;
  charset=UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="">
@@ -27,7 +27,7 @@ if(empty($_SESSION['loggedIn']))
 
  <!-- Google fonts used in this theme  -->
  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>  
+ <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
 
  <!-- Bootstrap core CSS -->
  <link href="bootstrap3_bookTheme/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,19 +44,19 @@ if(empty($_SESSION['loggedIn']))
 
 <body>
 
-  <?php include 'header.php'; ?>
+  <?php include 'header.php'; ?><br>
 
   <div class="container">
    <div class="row">  <!-- start main content row -->
 
     <div class="col-md-2">  <!-- start left navigation rail column -->
      <?php include 'side.php'; ?>
-   </div>  <!-- end left navigation rail --> 
+   </div>  <!-- end left navigation rail -->
 
    <div class="col-md-10">  <!-- start main content column -->
 
      <!-- Customer panel  -->
-    <div class="panel panel-danger spaceabove">           
+    <div class="panel panel-danger spaceabove">
       <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
       <div class="panel-body">
         <div class="row">
@@ -80,15 +80,15 @@ if(empty($_SESSION['loggedIn']))
               </div>
             </div>
           </div>
-        </div>           
+        </div>
       </div>
         <br>
 
     </div>  <!-- end main content column -->
-  </div> 
+  </div>
 
     <div class = "container">
-    <div class="panel panel-danger spaceabove">           
+    <div class="panel panel-danger spaceabove">
       <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Pictures</h4></div>
       <div class="panel-body">
         <div class="row">
@@ -97,7 +97,7 @@ if(empty($_SESSION['loggedIn']))
             <div class="panel panel-primary">
               <div class="panel-heading"><h4>Image</h4></div>
               <ul class="list-group">
-        
+
                 <img class = "text-center" style = "width:100%;" src = "images/brokeCar.jpg">
               </ul>
               </div>
@@ -105,7 +105,7 @@ if(empty($_SESSION['loggedIn']))
           </div>
 
 
-        </div>           
+        </div>
       </div>
     </div>
 
@@ -119,6 +119,6 @@ if(empty($_SESSION['loggedIn']))
  <!-- Bootstrap core JavaScript
    ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
-   
+
  </body>
  </html>
