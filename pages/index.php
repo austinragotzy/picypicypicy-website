@@ -21,22 +21,22 @@ session_start();
         <h1>Picyest Pics</h1>
         <div class="row">
           <div class="col-md-4">
-            <div class="imgWrap">
+            <a href="image.php?img=1" class="imgWrap">
               <img class="img-rounded" src="images/brokeCar.jpg" alt="broken car">
               <p class="imgDets">this car is busted <br>Owner: it aint mine</p>
-            </div>
+            </a>
           </div>
           <div class="col-md-4">
-            <div class="imgWrap">
+            <a href="image.php?img=2" class="imgWrap">
               <img class="img-rounded" src="images/brokeChair.jpg" alt="broken chair">
               <p class="imgDets">this chair is busted <br>Owner: it aint mine</p>
-            </div>
+            </a>
           </div>
           <div class="col-md-4">
-            <div class="imgWrap">
+            <a href="image.php?img=3" class="imgWrap">
               <img class="img-rounded" src="images/brokeHouse.jpg" alt="broken house">
               <p class="imgDets">this house is busted <br>Owner: ...that ones mine</p>
-            </div>
+            </a>
           </div>
         </div>
         <div style="margin-top: 1em;" class="panel panel-default">

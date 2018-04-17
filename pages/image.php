@@ -32,6 +32,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/image.css">
     <link rel="stylesheet" href="css/home.css">
     <title>Image Page</title>
   </head>
@@ -50,7 +51,7 @@
               <div class="panel-body">
                 <div class="col-md-5">
                   <div class="imageBox">
-                    <?php echo '<img class="img-rounded" src="images/'.$imageTup['Path'].'" alt="'.$imageTup['Title'].'" title="'.$imageTup['Title'].'">'; ?>
+                    <?php echo '<img class="img-rounded mainImg" src="images/'.$imageTup['Path'].'" alt="'.$imageTup['Title'].'" title="'.$imageTup['Title'].'">'; ?>
                   </div><br>
                 </div>
                 <div class="col-md-7">
