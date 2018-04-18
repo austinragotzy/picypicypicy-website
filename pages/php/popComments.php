@@ -1,4 +1,4 @@
-<?php
+<?php //this is how we update the like/dislike for comments in database
 if(isset($_POST['like'])){
   try {
     $sql = "UPDATE Comments SET Likes = Likes + 1 WHERE CommentID = ?";
@@ -10,7 +10,6 @@ if(isset($_POST['like'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-
 }
 if(isset($_POST['dislike'])){
   try {
@@ -23,8 +22,43 @@ if(isset($_POST['dislike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
+}
+ ?>
+<?php //this is how we add a comment to database
+  if(isset($_POST['comment'])){
+    try {
+      $sql = "INSERT INTO Comments (UID, ImageID, Comment) VALUES (?, ?, ?)";
+      $pdo->beginTransaction();
+      $commentUpST = $pdo->prepare($sql);
+      $commentUpST->bindValue(1, $_SESSION['UID']);
+      $commentUpST->bindValue(2, $_GET['img']);
+      $commentUpST->bindValue(3, $_POST['comment']);
+      $commentUpST->execute();
+      $pdo->commit();
+    } catch (PDOException $e) {
+      $e->getMessage();
+    }
+
+  }
+?>
+<?php  //this is where we add reply to database
+if(isset($_POST['reply'])){
+  try {
+    $sql = "INSERT INTO CommentReply (UID, CommentID, Comment) VALUES (?, ?, ?)";
+    $pdo->beginTransaction();
+    $replyUpST = $pdo->prepare($sql);
+    $replyUpST->bindValue(1, $_SESSION['UID']);
+    $replyUpST->bindValue(2, $_POST['replybtn']);
+    $replyUpST->bindValue(3, $_POST['reply']);
+    $replyUpST->execute();
+    $pdo->commit();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
 
 }
+?>
+<?php
 //i will clean this up later hopefully
 include 'connect.php';
 try {
@@ -36,7 +70,6 @@ try {
 } catch (PDOException $e) {
   die($e->getMessage());
 }
-//here is the break
 while($commentTup = $commentST->fetch()){
   try {
     $sql = "SELECT count(ReplyID) as replies FROM CommentReply WHERE CommentID = ?";
@@ -87,14 +120,15 @@ while($commentTup = $commentST->fetch()){
         <div class="row replier-row">
           <p class="reply"><span class="replier">'.$replierTup['Username'].':</span> '.$replyTup['Comment'].'</p>
         </div>
-      </div><br>';
+      </div>';
     }
-    echo '<form class="input-group reply" action="index.html" method="post">
+
+    echo '<br><form class="input-group reply" action="image.php?img='.$_GET['img'].'" method="post">
       <div class="form-group">
-        <input type="text" class="form-control" name="reply" rows="2" placeholder="what do YOU want to say to '.$commenterTup['Username'].'"></input>
+        <input type="text" class="form-control" name="reply" placeholder="what do YOU want to say to '.$commenterTup['Username'].'"></input>
       </div>
         <div class="input-group-btn" style="height=100%;">
-          <button class="btn btn-default" type="submit" name=""><span class="glyphicon glyphicon-pencil"></span>Submit<span class="glyphicon glyphicon-pencil"></span></button>
+          <button class="btn btn-default" type="submit" name="replybtn" value="'.$commentTup['CommentID'].'"><span class="glyphicon glyphicon-pencil"></span>Submit<span class="glyphicon glyphicon-pencil"></span></button>
         </div>
     </form>
   </details><br>';

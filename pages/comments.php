@@ -13,9 +13,9 @@
       </div>
       <div class="panel-body">
         <?php include 'php/popComments.php' ?>
-        <form class="input-group" style="width: 100%;" action="index.html" method="post">
+        <form class="input-group" style="width: 100%;" action="image.php?img=<?php echo $_GET['img']; ?>" method="post">
           <div class="form-group">
-            <input type="text" class="form-control" name="comment" rows="2" placeholder="how do YOU really feel"></input>
+            <input type="text" class="form-control" name="comment" placeholder="how do YOU really feel"></input>
           </div>
             <div class="input-group-btn" style="height=100%;">
               <button class="btn btn-default" type="submit" name=""><span class="glyphicon glyphicon-pencil"></span>Submit<span class="glyphicon glyphicon-pencil"></span></button>
