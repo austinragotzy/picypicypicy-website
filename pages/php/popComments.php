@@ -57,12 +57,15 @@ if(isset($_POST['redislike'])){
 <?php //this is how we add a comment to database
   if(isset($_POST['comment'])){
     try {
-      $sql = "INSERT INTO Comments (UID, ImageID, Comment) VALUES (?, ?, ?)";
+      $sql = "INSERT INTO Comments (UID, ImageID, Comment,Likes,Dislikes,Date) VALUES (?,?,?,?, ?, ?)";
       $pdo->beginTransaction();
       $commentUpST = $pdo->prepare($sql);
       $commentUpST->bindValue(1, $_SESSION['UID']);
       $commentUpST->bindValue(2, $_GET['img']);
       $commentUpST->bindValue(3, $_POST['comment']);
+      $commentUpST->bindValue(4,0);
+      $commentUpST->bindValue(5, 0);
+      $commentUpST->bindValue(6, date("Y-m-d H:i:s"));
       $commentUpST->execute();
       $pdo->commit();
     } catch (PDOException $e) {
@@ -74,12 +77,15 @@ if(isset($_POST['redislike'])){
 <?php  //this is where we add reply to database
 if(isset($_POST['reply'])){
   try {
-    $sql = "INSERT INTO CommentReply (UID, CommentID, Comment) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO CommentReply (UID, CommentID, Comment,Likes,Dislikes,Date) VALUES (?,?,?,?, ?, ?)";
     $pdo->beginTransaction();
     $replyUpST = $pdo->prepare($sql);
     $replyUpST->bindValue(1, $_SESSION['UID']);
     $replyUpST->bindValue(2, $_POST['replybtn']);
     $replyUpST->bindValue(3, $_POST['reply']);
+    $replyUpST->bindValue(4,0);
+    $replyUpST->bindValue(5, 0);
+    $replyUpST->bindValue(6, date("Y-m-d H:i:s"));
     $replyUpST->execute();
     $pdo->commit();
   } catch (PDOException $e) {
