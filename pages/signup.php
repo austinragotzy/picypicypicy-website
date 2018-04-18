@@ -29,7 +29,7 @@
         $st->bindValue(5, $lName);
         $st->execute();
         $pdo->commit();
-        header("location: login.php");
+        header("location: index.php");
       }else{
         header("location: signUp.php");
       }
