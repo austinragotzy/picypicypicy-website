@@ -29,7 +29,31 @@
         $st->bindValue(5, $lName);
         $st->execute();
         $pdo->commit();
-        header("location: index.php");
+
+
+
+        $userName = $_POST['user'];
+        $pass = $_POST['pass'];//may have to hash
+
+      $sql = "SELECT * FROM User WHERE UserName = ? and password = ?";
+      $st = $pdo->prepare($sql);
+      $st->bindValue(1, $userName);
+      $st->bindValue(2, $pass);
+      $st->execute();
+
+        if($uAccount = $st->fetch()){
+          $_SESSION['loggedIn'] = "yep";
+          $_SESSION['UID'] = $uAccount['UID'];
+          $_SESSION['userName'] = $uAccount['Username'];
+          $_SESSION['pass'] = $uAccount['Password'];
+          $_SESSION['email'] = $uAccount['Email'];
+          $_SESSION['fName'] = $uAccount['FirstName'];
+          $_SESSION['lName'] = $uAccount['LastName'];
+
+          $_SESSION['date'] = $uAccount['DateOfRegistration'];
+
+          header("location: index.php");
+        }
       }else{
         header("location: signUp.php");
       }
