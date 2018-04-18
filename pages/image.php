@@ -34,6 +34,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/image.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="shortcut icon" href="images/icon.png" />
     <title>Image Page</title>
   </head>
   <body>

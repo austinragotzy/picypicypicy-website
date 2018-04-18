@@ -19,6 +19,7 @@ include 'getImages.php';
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="">
  <meta name="author" content="">
+ <link rel="shortcut icon" href="images/icon.png" />
  <title>Travel Journal</title>
 
  <link rel="shortcut icon" href="../../assets/ico/favicon.png">
@@ -39,8 +40,8 @@ include 'getImages.php';
    <div class="col-md-10">  <!-- start main content column -->
 
      <!-- Customer panel  -->
-    <div class="panel panel-danger spaceabove" >    
-        
+    <div class="panel panel-danger spaceabove" >
+
       <div class="panel-heading" ><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
       <div class="panel-body">
         <div class="row">
@@ -71,7 +72,7 @@ include 'getImages.php';
   </div>
 
     <div class = "container">
-    <div class="panel panel-danger spaceabove">           
+    <div class="panel panel-danger spaceabove">
       <div class="panel-heading"><h4><?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Pictures</h4></div>
       <div class="panel-body">
         <div class="row">
@@ -85,10 +86,10 @@ include 'getImages.php';
               <img src = "images/'.$image["Path"].'" alt="..." class="img-thumbnail">
             </a>
             <div class="caption">
-              <p>  
+              <p>
                 <a href="image.php?img='.$image["ImageID"].'">'.$image["Title"].'</a>
               </p>
-              <p> 
+              <p>
                 <a href="image.php?img='.$image["ImageID"].'" class="btn btn-info" role="button">
                   <span class="glyphicon glyphicon-info-sign"></span> View
                 </a>
@@ -98,13 +99,13 @@ include 'getImages.php';
         </div>';
         }
         ?>
-        </div>           
+        </div>
       </div>
     </div>
 
    <!-- end main content row -->
 </div>   <!-- end container -->
 
-   
+
  </body>
  </html>
