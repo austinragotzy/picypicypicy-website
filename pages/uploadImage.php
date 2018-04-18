@@ -10,36 +10,40 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        //echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        //echo "File is not an image.";
+        header('Location: upload.php?error=FileNotImg');
         $uploadOk = 0;
     }
 }
 // Check if file already exists
 if (file_exists($target_file)) {
+    header('Location: upload.php?error=FileAlreadyExists');
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
+    header('Location: upload.php?error=FileIsToBig');
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
+    header('Location: upload.php?error=FileWrongFormat');
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
+
 // if everything is ok, try to upload file
 } else {
-   
-        
+  
     include 'connect.php';
     try{
 
@@ -90,7 +94,7 @@ if ($uploadOk == 0) {
     }
     catch(PDOException $e)
     {
-        header('Location: upload.php?img=Exception');
+        header('Location: upload.php?error=Exception');
         echo "Sorry, there was an error uploading your file.";
     }
     
