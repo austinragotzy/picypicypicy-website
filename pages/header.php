@@ -52,7 +52,7 @@
             <li><a href="#">Under There</a></li>
             <li><a href="#">Under Wear</a></li>
             <li><a href="#">Great Place</a></li>
-            <li><a href="#">Shitty Place</a></li>
+            <li><a href="#">City Place</a></li>
           </ul>
         </div>
       </nav>
