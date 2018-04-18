@@ -44,7 +44,7 @@ if ($uploadOk == 0) {
     try{
 
         $pdo->beginTransaction();
-        $sql = "INSERT INTO image (UID,Path,Title,Description,Likes,Dislikes,ViewCount,Privacy,Date) VALUES
+        $sql = "INSERT INTO Image (UID,Path,Title,Description,Likes,Dislikes,ViewCount,Privacy,Date) VALUES
         (?,?,?,?,?,?,?,?,?)";
         $st = $pdo->prepare($sql);
         $st->bindValue(1,$_SESSION["UID"]);
