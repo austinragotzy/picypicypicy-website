@@ -21,6 +21,7 @@ if(isset($_POST["submit"])) {
 // Check if file already exists
 if (file_exists($target_file)) {
     header('Location: upload.php?error=FileAlreadyExists');
+    header('Location: upload.php?error=FileAlreadyExists2');
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
@@ -82,10 +83,11 @@ if ($uploadOk == 0) {
             }
             else
             {
+                header('Location: image.php?error=CannotMoveFile');
                 $pdo->rollback();
             }
         }catch(exception $e){
-
+            
             $pdo->rollback();
             
         }
