@@ -4,7 +4,7 @@ include 'connect.php';
 
 try
 {
-    $sql = "SELECT * FROM image";
+    $sql = "SELECT * FROM Image";
     $st = $pdo->prepare($sql);
     $st->execute();
 

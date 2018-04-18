@@ -4,7 +4,7 @@ include 'connect.php';
 
 try
 {
-    $sql = "SELECT * FROM image where UID = ".$_SESSION["UID"];
+    $sql = "SELECT * FROM Image where UID = ".$_SESSION["UID"];
     $st = $pdo->prepare($sql);
     $st->execute();
 
