@@ -84,10 +84,11 @@ if ($uploadOk == 0) {
             $pdo->rollback();
         }
 
-        
+        header('Location: upload.php?img=error');
     }
     catch(PDOException $e)
     {
+        header('Location: upload.php?img=error');
         echo "Sorry, there was an error uploading your file.";
     }
     
