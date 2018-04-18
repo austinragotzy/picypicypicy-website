@@ -41,6 +41,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="shortcut icon" href="images/icon.png" />
     <title>Sign in</title>
   </head>
   <body>

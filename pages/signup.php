@@ -44,6 +44,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="images/icon.png" />
     <title>Sign Up</title>
   </head>
   <body>
