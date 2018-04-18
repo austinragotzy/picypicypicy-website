@@ -14,7 +14,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">tr&#233; Picy</a>
+            <a class="navbar-brand" href="#">tr&#233; Picy</a> 
           </div>
           <ul class="nav navbar-nav pull-right">
             <?php
@@ -30,7 +30,7 @@
             ?>
 
             <li><a href="signup.php">Sign Up</a></li>
-            <form class="navbar-form navbar-left" action="index.html" method="post">
+            <form class="navbar-form navbar-left" action="index.php" method="post">
               <div class="input-group">
                 <div class="form-group">
                   <input class="form-control" type="text" name="search" placeholder="Search">
