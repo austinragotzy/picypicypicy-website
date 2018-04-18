@@ -10,6 +10,7 @@ if(isset($_POST['like'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
+  $_POST = array();
 }
 if(isset($_POST['dislike'])){
   try {
@@ -22,6 +23,7 @@ if(isset($_POST['dislike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
+  $_POST = array();
 }
  ?>
 <?php //reply Likes
@@ -36,6 +38,7 @@ if(isset($_POST['relike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
+  $_POST = array();
 }
 if(isset($_POST['redislike'])){
   try {
@@ -48,6 +51,7 @@ if(isset($_POST['redislike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
+  $_POST = array();
 }
 ?>
 <?php //this is how we add a comment to database
@@ -64,7 +68,7 @@ if(isset($_POST['redislike'])){
     } catch (PDOException $e) {
       $e->getMessage();
     }
-
+    $_POST = array();
   }
 ?>
 <?php  //this is where we add reply to database
@@ -81,7 +85,7 @@ if(isset($_POST['reply'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-
+  $_POST = array();
 }
 ?>
 <?php //populate the comments
