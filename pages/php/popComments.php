@@ -120,6 +120,7 @@ while($commentTup = $commentST->fetch()){
   }
   $numRep = $numReplyST->fetch();
   $commenterTup = $commenterST->fetch();
+  $pop = intval($commentTup['Likes'])-intval($commentTup['Dislikes']);
   echo '<details>
     <summary class="commenter-row">
       <div class="row cr">
@@ -130,6 +131,7 @@ while($commentTup = $commentST->fetch()){
         <form class="" action="image.php?img='.$_GET['img'].'" method="post">
           <button type="submit" name="like" value="'.$commentTup['CommentID'].'">'.$commentTup['Likes'].' <span class="glyphicon glyphicon-thumbs-up"></span></button>
           <button type="submit" name="dislike" value="'.$commentTup['CommentID'].'">'.$commentTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <p> pop: '.$pop.'</p>
           <p class="pull-right">'.$numRep['replies'].' replies</p>
         </form>
       </div>
@@ -144,6 +146,7 @@ while($commentTup = $commentST->fetch()){
         $e->getMessage();
       }
       $replierTup = $replierST->fetch();
+      $rpop = intval($replyTup['Likes'])-intval($replyTup['Dislikes']);
       echo '<div class="">
       <div class="replier-row">
       <div class="row">
@@ -153,6 +156,7 @@ while($commentTup = $commentST->fetch()){
         <form class="" action="image.php?img='.$_GET['img'].'" method="post">
           <button type="submit" name="relike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Likes'].' <span class="glyphicon glyphicon-thumbs-up"></span></button>
           <button type="submit" name="redislike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <p> pop: '.$rpop.'</p>
         </form>
       </div>
         </div>';
