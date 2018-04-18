@@ -49,14 +49,31 @@
   <body>
     <?php include 'header.php' ?>
     <main>
-      <form action="signup.php" method="post">
-        <input type="text" name="user" placeholder="Username"><br>
-        <input type="password" name="pass" placeholder="Password"><br>
-        <input type="email" name="email" placeholder="Email"><br>
-        <input type="text" name="fName" placeholder="First Name"><br>
-        <input type="text" name="lName" placeholder="Last Name"><br>
-        <button type="submit" name="">Submit</button>
-      </form>
+      <br>
+      <div class="container-fluid">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Sign Up Here</h3>
+          </div>
+          <div class="panel-body">
+            <form action="signup.php" method="post">
+              <label for="user">Username</label><br>
+              <input id="user" type="text" name="user" placeholder="Username" required><br><br>
+              <label for="pass">Password</label><br>
+              <input id="pass" type="password" name="pass" placeholder="Password" required><br><br>
+              <label for="email">Email</label><br>
+              <input id="email" type="email" name="email" placeholder="Email" required><br><br>
+              <label for="fname">First Name</label><br>
+              <input id="fname" type="text" name="fName" placeholder="First Name" required><br><br>
+              <label for="lname">Last Name</label><br>
+              <input id="lname" type="text" name="lName" placeholder="Last Name" required><br><br>
+              <button type="submit" name="">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </main>
+    <?php include 'footer.php'; ?>
   </body>
 </html>

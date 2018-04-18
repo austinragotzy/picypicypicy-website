@@ -9,7 +9,7 @@ main h1{
   text-align: center;
   background-color: none;
 }
-.panel-body p{
+.tags{
   font-size: 3em;
   text-align: center;
 }
@@ -24,12 +24,14 @@ main h1{
   bottom: 0;
   left: 0;
   right: 0;
-  background: gray;
+  background: white;
   color: purple;
   visibility: hidden;
   opacity: 0;
-  height: 50%;
+  height: 100%;
   width: 100%;
+  font-size: 2em;
+  text-align: center;
 }
 .imgWrap:hover .imgDets{
   visibility: visible;

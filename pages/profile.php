@@ -14,7 +14,7 @@ include 'getImages.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta http-equiv="Content-Type" content="text/html; 
+ <meta http-equiv="Content-Type" content="text/html;
  charset=UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="">
@@ -27,14 +27,14 @@ include 'getImages.php';
 
 <body>
 
-  <?php include 'header.php'; ?>
+  <?php include 'header.php'; ?><br>
 
   <div class="container"  style = "padding:10px;">
    <div class="row">  <!-- start main content row -->
 
     <div class="col-md-2">  <!-- start left navigation rail column -->
      <?php include 'side.php'; ?>
-   </div>  <!-- end left navigation rail --> 
+   </div>  <!-- end left navigation rail -->
 
    <div class="col-md-10">  <!-- start main content column -->
 
@@ -64,11 +64,11 @@ include 'getImages.php';
               </div>
             </div>
           </div>
-        </div>           
+        </div>
       </div>
         <br>
     </div>  <!-- end main content column -->
-  </div> 
+  </div>
 
     <div class = "container">
     <div class="panel panel-danger spaceabove">           

@@ -45,12 +45,25 @@
   </head>
   <body>
     <?php include 'header.php'; ?>
-    <body>
-      <form class="" action="login.php" method="post">
-        <input type="text" name="user" placeholder="username">
-        <input type="password" name="pass" placeholder="password">
-        <button type="submit" name="">Go</button>
-      </form>
-    </body>
+    <br>
+    <main>
+      <div class="container-fluid">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>Log In Here</h3>
+          </div>
+          <div class="panel-body">
+            <form class="" action="login.php" method="post"><br>
+              <label for="user">Username</label><br>
+              <input id="user" type="text" name="user" placeholder="username" required><br><br>
+              <label for="pass">Password</label><br>
+              <input id="pass" type="password" name="pass" placeholder="password" required><br><br>
+              <button type="submit" name="">Go</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <?php include 'footer.php'; ?>
   </body>
 </html>

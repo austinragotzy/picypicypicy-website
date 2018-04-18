@@ -38,8 +38,10 @@ CREATE TABLE `CommentReply` (
   `Likes` int(11) NOT NULL,
   `Dislikes` int(11) NOT NULL,
   `Comment` longtext NOT NULL,
-  `Date` datetime NOT NULL
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `CommentReply` VALUES (1,2,1,0,0,"no this picture sucks dude",'1999-05-04 00:00:00'),
+(2,1,2,0,0,"lol true that thing is busted",'1998-12-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE `Comments` (
   `Comment` longtext,
   `Likes` int(11) NOT NULL,
   `Dislikes` int(11) NOT NULL,
-  `Date` datetime NOT NULL
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT INTO `Comments` VALUES (1,1,1,"Good Picture",0,0,'1998-05-04 00:00:00'),
 (2,2,2,"Hahaha thats broken!",0,0,'1998-05-04 00:00:00');
@@ -76,7 +78,7 @@ CREATE TABLE `Image` (
   `Dislikes` int(11) DEFAULT NULL,
   `ViewCount` int(11) DEFAULT NULL,
   `Privacy` int(1) NOT NULL,
-  `Date` datetime NOT NULL
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT INTO `Image` VALUES (1,1,"brokeCar.jpg","Broken Car","Its a car that is broken",0,0,0,1,'1998-05-04 00:00:00')
 ,(2,2,"brokeChair.jpg","Broken Chair","Its a chair",0,0,0,0,'1998-05-04 00:00:00')

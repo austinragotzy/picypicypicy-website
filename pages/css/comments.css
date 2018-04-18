@@ -1,0 +1,41 @@
+.commenter{
+  color: purple;
+  text-decoration: overline;
+  font-size: 1.5em;
+}
+.replier{
+  color: orange;
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+.panel-body summary p{
+  font-size: 1em;
+  text-align: left;
+}
+button, p{
+  display: inline-block;
+}
+.commenter-row{
+  border: 1px solid blue;
+  border-radius: 0em 1em 1em 1em;
+  padding: 0.5em 0.5em 0em 0.5em;
+}
+.cr{
+  margin: 0.5em 0em;
+}
+.replier-row{
+  margin-top: .5em;
+  margin-left: 2em;
+  padding: 1em 0em;
+  border: 1px solid red;
+  border-radius: 0em 1em 1em 1em;
+}
+.replycom{
+  margin-left: 1.5em;
+}
+.reply{
+  margin-left: 3em;
+}
+.vote{
+  margin-left: 1em;
+}
