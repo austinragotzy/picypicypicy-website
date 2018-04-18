@@ -64,7 +64,7 @@ if ($uploadOk == 0) {
             {
                 $pdo->commit();
 
-                $sql = "SELECT ImageID from image where Path = ?";
+                $sql = "SELECT ImageID from Image where Path = ?";
                 $st = $pdo->prepare($sql);
                 $st->bindValue(1,$_FILES["fileToUpload"]["name"]);
                 
