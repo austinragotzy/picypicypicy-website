@@ -24,6 +24,32 @@ if(isset($_POST['dislike'])){
   }
 }
  ?>
+<?php //reply Likes
+if(isset($_POST['relike'])){
+  try {
+    $sql = "UPDATE CommentReply SET Likes = Likes + 1 WHERE ReplyID = ?";
+    $pdo->beginTransaction();
+    $likeUpST = $pdo->prepare($sql);
+    $likeUpST->bindValue(1, $_POST['relike']);
+    $likeUpST->execute();
+    $pdo->commit();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
+}
+if(isset($_POST['redislike'])){
+  try {
+    $sql = "UPDATE CommentReply SET Dislikes = Dislikes + 1 WHERE ReplyID = ?";
+    $pdo->beginTransaction();
+    $likeUpST = $pdo->prepare($sql);
+    $likeUpST->bindValue(1, $_POST['redislike']);
+    $likeUpST->execute();
+    $pdo->commit();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
+}
+?>
 <?php //this is how we add a comment to database
   if(isset($_POST['comment'])){
     try {
@@ -58,11 +84,10 @@ if(isset($_POST['reply'])){
 
 }
 ?>
-<?php
-//i will clean this up later hopefully
+<?php //populate the comments
 include 'connect.php';
 try {
-  $sql = "SELECT * FROM Comments WHERE ImageID = ?";
+  $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY Date DESC";
   $commentST = $pdo->prepare($sql);
   $commentST->bindValue(1, $_GET['img']);
   $commentST->execute();
@@ -77,7 +102,7 @@ while($commentTup = $commentST->fetch()){
     $numReplyST->bindValue(1, $commentTup['CommentID']);
     $numReplyST->execute();
 
-    $sql = "SELECT * FROM CommentReply WHERE CommentID = ?";
+    $sql = "SELECT * FROM CommentReply WHERE CommentID = ? ORDER BY Likes - Dislikes DESC";
     $replyST = $pdo->prepare($sql);
     $replyST->bindValue(1, $commentTup['CommentID']);
     $replyST->execute();
@@ -94,14 +119,13 @@ while($commentTup = $commentST->fetch()){
   echo '<details>
     <summary class="commenter-row">
       <div class="row cr">
-        <p><span class="commenter">'.$commenterTup['Username'].': </span>'.$commentTup['Comment'].'</p><br>
+        <p><span class="commenter">'.$commenterTup['Username'].': </span>'.$commentTup['Comment'].'</p>
+        <p class="pull-right">Posted: '.date('F d, Y', strtotime($commentTup['Date'])).'</p><br>
       </div>
       <div class="row cr">
         <form class="" action="image.php?img='.$_GET['img'].'" method="post">
-          <p>'.$commentTup['Likes'].'</p>
-          <button type="submit" name="like" value="'.$commentTup['CommentID'].'"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-          <p>'.$commentTup['Dislikes'].'</p>
-          <button type="submit" name="dislike" value="'.$commentTup['CommentID'].'"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <button type="submit" name="like" value="'.$commentTup['CommentID'].'">'.$commentTup['Likes'].' <span class="glyphicon glyphicon-thumbs-up"></span></button>
+          <button type="submit" name="dislike" value="'.$commentTup['CommentID'].'">'.$commentTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
           <p class="pull-right">'.$numRep['replies'].' replies</p>
         </form>
       </div>
@@ -116,13 +140,19 @@ while($commentTup = $commentST->fetch()){
         $e->getMessage();
       }
       $replierTup = $replierST->fetch();
-      echo '<div class="container-fluid">
-        <div class="row replier-row">
-          <p class="reply"><span class="replier">'.$replierTup['Username'].':</span> '.$replyTup['Comment'].'</p>
-        </div>
-      </div>';
+      echo '<div class="">
+      <div class="replier-row">
+      <div class="row">
+        <p class="replycom"><span class="replier">'.$replierTup['Username'].':</span> '.$replyTup['Comment'].'</p>
+      </div>
+      <div class="row vote">
+        <form class="" action="image.php?img='.$_GET['img'].'" method="post">
+          <button type="submit" name="relike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Likes'].' <span class="glyphicon glyphicon-thumbs-up"></span></button>
+          <button type="submit" name="redislike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
+        </form>
+      </div>
+        </div>';
     }
-
     echo '<br><form class="input-group reply" action="image.php?img='.$_GET['img'].'" method="post">
       <div class="form-group">
         <input type="text" class="form-control" name="reply" placeholder="what do YOU want to say to '.$commenterTup['Username'].'"></input>
@@ -133,4 +163,12 @@ while($commentTup = $commentST->fetch()){
     </form>
   </details><br>';
 }
+echo '<form class="input-group" style="width: 100%;" action="image.php?img='.$_GET['img'].'" method="post">
+  <div class="form-group">
+    <input type="text" class="form-control" name="comment" placeholder="how do YOU really feel"></input>
+  </div>
+    <div class="input-group-btn" style="height=100%;">
+      <button class="btn btn-default" type="submit" name=""><span class="glyphicon glyphicon-pencil"></span>Submit<span class="glyphicon glyphicon-pencil"></span></button>
+    </div>
+</form>';
  ?>

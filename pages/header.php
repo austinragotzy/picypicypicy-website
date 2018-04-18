@@ -43,7 +43,7 @@
           </ul>
         </div>
       </nav>
-      <h1>Picy! Picy! Picy!</h1>
+      <h1><img src="images/icon.png" alt="Picy! Picy! Picy!"></h1>
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <ul class="nav navbar-nav">

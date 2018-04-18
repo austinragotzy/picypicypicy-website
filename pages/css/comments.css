@@ -26,10 +26,16 @@ button, p{
 .replier-row{
   margin-top: .5em;
   margin-left: 2em;
-  padding: 1em;
+  padding: 1em 0em;
   border: 1px solid red;
   border-radius: 0em 1em 1em 1em;
 }
+.replycom{
+  margin-left: 1.5em;
+}
 .reply{
   margin-left: 3em;
+}
+.vote{
+  margin-left: 1em;
 }

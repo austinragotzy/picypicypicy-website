@@ -28,8 +28,10 @@ main h1{
   color: purple;
   visibility: hidden;
   opacity: 0;
-  height: 50%;
+  height: 100%;
   width: 100%;
+  font-size: 2em;
+  text-align: center;
 }
 .imgWrap:hover .imgDets{
   visibility: visible;
