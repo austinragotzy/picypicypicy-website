@@ -14,11 +14,12 @@ include 'getAllImages.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta http-equiv="Content-Type" content="text/html; 
+ <meta http-equiv="Content-Type" content="text/html;
  charset=UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="">
  <meta name="author" content="">
+ <link rel="shortcut icon" href="images/icon.png" />
  <title>Travel Journal</title>
 
  <link rel="shortcut icon" href="../../assets/ico/favicon.png">
@@ -34,13 +35,13 @@ include 'getAllImages.php';
 
     <div class="col-md-2">  <!-- start left navigation rail column -->
      <?php include 'side.php'; ?>
-   </div>  <!-- end left navigation rail --> 
+   </div>  <!-- end left navigation rail -->
 
    <div class="col-md-10">  <!-- start main content column -->
 
      <!-- Customer panel  -->
-    <div class="panel panel-danger spaceabove" >    
-        
+    <div class="panel panel-danger spaceabove" >
+
       <div class="panel-heading" ><h4>Browse Pictures</h4></div>
       <div class="panel-body">
         <div class="row">
@@ -55,10 +56,10 @@ include 'getAllImages.php';
                         <img src = "images/'.$image["Path"].'" alt="..." class="img-thumbnail">
                         </a>
                         <div class="caption">
-                        <p>  
+                        <p>
                             <a href="image.php?img='.$image["ImageID"].'">'.$image["Title"].'</a>
                         </p>
-                        <p> 
+                        <p>
                             <a href="image.php?img='.$image["ImageID"].'" class="btn btn-info" role="button">
                             <span class="glyphicon glyphicon-info-sign"></span> View
                             </a>
@@ -71,8 +72,8 @@ include 'getAllImages.php';
             ?>
             </div>
           </div>
-        </div>           
+        </div>
       </div>
         <br>
     </div>  <!-- end main content column -->
-  </div> 
+  </div>
