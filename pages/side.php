@@ -16,7 +16,7 @@ if(isset($_SESSION["loggedIn"]))
     <li class="nav-header"> <strong><span class="glyphicon glyphicon-globe"></span>  Browse Images</strong></li> 
         <li><a href="picDump.php"><span class="glyphicon glyphicon-th-list"></span> Image List</a></li>
         <li><a href="search.php"><span class="glyphicon glyphicon-search"></span> Search</a></li> 
-        <li><a href="upload.php"><span class="glyphicon glyphicon-search"></span> Upload</a></li> 
+        <li><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> Upload</a></li> 
     </ul>
     </div>
     </div>';
