@@ -1,47 +1,78 @@
 <?php
+session_start();
 
+if(empty($_SESSION['loggedIn']))
+{
+    header('Location: login.php');
+    exit;
+}
+
+include 'getAllImages.php';
 
 ?>
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.css">
-    <title></title>
-  </head>
-  <body>
-    <main class="container-fluid">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>Pics!!</h3>
-        </div>
-        <div class="panel-body">
-          <?php for ($i=0; $i <2 ; $i++) {
-            echo '<div class="row">
-              <div class="col-md-4">
-                <div class="imgWrap">
-                  <img class="img-rounded" src="images/brokeCar.jpg" alt="broken car">
-                  <p class="imgDets">this car is busted <br>Owner: it aint mine</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="imgWrap">
-                  <img class="img-rounded" src="images/brokeChair.jpg" alt="broken chair">
-                  <p class="imgDets">this chair is busted <br>Owner: it aint mine</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="imgWrap">
-                  <img class="img-rounded" src="images/brokeHouse.jpg" alt="broken house">
-                  <p class="imgDets">this house is busted <br>Owner: ...that ones mine</p>
-                </div>
-              </div>
-            </div><br>';
-          }  ?>
-        </div>
+<html lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; 
+ charset=UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="">
+ <meta name="author" content="">
+ <title>Travel Journal</title>
+
+ <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+</head>
+
+<body>
+
+  <?php include 'header.php'; ?>
+
+  <div class="container"  style = "padding:10px;">
+   <div class="row">  <!-- start main content row -->
+
+    <div class="col-md-2">  <!-- start left navigation rail column -->
+     <?php include 'side.php'; ?>
+   </div>  <!-- end left navigation rail --> 
+
+   <div class="col-md-10">  <!-- start main content column -->
+
+     <!-- Customer panel  -->
+    <div class="panel panel-danger spaceabove" >    
+        
+      <div class="panel-heading" ><h4>Browse Pictures</h4></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <?php
+
+                foreach($images as $image)
+                {
+                    echo'<div class="col-md-6 text-center">
+                    <div class="thumbnail">
+                        <a href = "image.php?img='.$image["ImageID"].'">
+                        <img src = "images/'.$image["Path"].'" alt="..." class="img-thumbnail">
+                        </a>
+                        <div class="caption">
+                        <p>  
+                            <a href="image.php?img='.$image["ImageID"].'">'.$image["Title"].'</a>
+                        </p>
+                        <p> 
+                            <a href="image.php?img='.$image["ImageID"].'" class="btn btn-info" role="button">
+                            <span class="glyphicon glyphicon-info-sign"></span> View
+                            </a>
+                        </p>
+                        </div>
+                    </div>
+                    </div>';
+                }
+
+            ?>
+            </div>
+          </div>
+        </div>           
       </div>
-    </main>
-  </body>
-</html>
+        <br>
+    </div>  <!-- end main content column -->
+  </div> 
