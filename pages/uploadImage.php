@@ -71,9 +71,9 @@ if ($uploadOk == 0) {
                 $st->execute();
 
                 $id = $st->fetch();
-                //echo "SQL: ".$sql;
-                //echo "The path is: ".$_FILES["fileToUpload"]["name"];
-                //echo "The ID is: ".$id["ImageID"];
+                echo "SQL: ".$sql;
+                echo "The path is: ".$_FILES["fileToUpload"]["name"];
+                echo "The ID is: ".$id["ImageID"];
                 header('Location: image.php?img='.$id["ImageID"]);
             }
             else
@@ -81,10 +81,12 @@ if ($uploadOk == 0) {
                 $pdo->rollback();
             }
         }catch(exception $e){
+
             $pdo->rollback();
+            
         }
 
-        header('Location: upload.php?img=pdoException');
+        //header('Location: upload.php?img=pdoException');
     }
     catch(PDOException $e)
     {
