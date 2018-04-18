@@ -83,11 +83,11 @@ if ($uploadOk == 0) {
             }
             else
             {
-                header('Location: image.php?error=CannotMoveFile');
+                header('Location: upload.php?error=CannotMoveFile');
                 $pdo->rollback();
             }
         }catch(exception $e){
-            
+
             $pdo->rollback();
             
         }
