@@ -7,12 +7,10 @@ if(empty($_SESSION['loggedIn']))
     exit;
 }
 
+include 'getImages.php';
+
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,28 +23,13 @@ if(empty($_SESSION['loggedIn']))
 
  <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
- <!-- Google fonts used in this theme  -->
- <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>  
-
- <!-- Bootstrap core CSS -->
- <link href="bootstrap3_bookTheme/dist/css/bootstrap.min.css" rel="stylesheet">
- <!-- Bootstrap theme CSS -->
- <!-- <link href="bootstrap3_bookTheme/theme.css" rel="stylesheet"> -->
-
-
- <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-   <!--[if lt IE 9]>
-   <script src="bootstrap3_bookTheme/assets/js/html5shiv.js"></script>
-   <script src="bootstrap3_bookTheme/assets/js/respond.min.js"></script>
- <![endif]-->
 </head>
 
 <body>
 
   <?php include 'header.php'; ?>
 
-  <div class="container">
+  <div class="container"  style = "padding:10px;">
    <div class="row">  <!-- start main content row -->
 
     <div class="col-md-2">  <!-- start left navigation rail column -->
@@ -56,8 +39,9 @@ if(empty($_SESSION['loggedIn']))
    <div class="col-md-10">  <!-- start main content column -->
 
      <!-- Customer panel  -->
-    <div class="panel panel-danger spaceabove">           
-      <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
+    <div class="panel panel-danger spaceabove" >    
+        
+      <div class="panel-heading" ><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Profile Page</h4></div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-6">
@@ -83,28 +67,37 @@ if(empty($_SESSION['loggedIn']))
         </div>           
       </div>
         <br>
-
     </div>  <!-- end main content column -->
   </div> 
 
     <div class = "container">
     <div class="panel panel-danger spaceabove">           
-      <div class="panel-heading"><h4>User <?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Pictures</h4></div>
+      <div class="panel-heading"><h4><?php echo $_SESSION['fName']." ".$_SESSION["lName"]  ?>'s Pictures</h4></div>
       <div class="panel-body">
         <div class="row">
+        <?php
 
-          <div class="col-md-4">
-            <div class="panel panel-primary">
-              <div class="panel-heading"><h4>Image</h4></div>
-              <ul class="list-group">
-        
-                <img class = "text-center" style = "width:100%;" src = "images/brokeCar.jpg">
-              </ul>
-              </div>
+        foreach($images as $image)
+        {
+          echo'<div class="col-md-6 text-center">
+          <div class="thumbnail">
+            <a href = "image.php?img='.$image["ImageID"].'">
+              <img src = "images/'.$image["Path"].'" alt="..." class="img-thumbnail">
+            </a>
+            <div class="caption">
+              <p>  
+                <a href="image.php?img='.$image["ImageID"].'">'.$image["Title"].'</a>
+              </p>
+              <p> 
+                <a href="image.php?img='.$image["ImageID"].'" class="btn btn-info" role="button">
+                  <span class="glyphicon glyphicon-info-sign"></span> View
+                </a>
+              </p>
             </div>
           </div>
-
-
+        </div>';
+        }
+        ?>
         </div>           
       </div>
     </div>
@@ -112,13 +105,6 @@ if(empty($_SESSION['loggedIn']))
    <!-- end main content row -->
 </div>   <!-- end container -->
 
-
-
-
-
- <!-- Bootstrap core JavaScript
-   ================================================== -->
-   <!-- Placed at the end of the document so the pages load faster -->
    
  </body>
  </html>
