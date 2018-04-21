@@ -97,10 +97,22 @@ if(isset($_POST['reply'])){
 <?php //populate the comments
 include 'connect.php';
 try {
-  $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY Date DESC";
-  $commentST = $pdo->prepare($sql);
-  $commentST->bindValue(1, $_GET['img']);
-  $commentST->execute();
+  if(isset($_POST['pop'])){
+    $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY Likes-Dislikes DESC";
+    $commentST = $pdo->prepare($sql);
+    $commentST->bindValue(1, $_GET['img']);
+    $commentST->execute();
+  }else if(isset($_POST['best'])){//need to fix this one here
+    $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY SELECT count(*) FROM CommentReply GROUP BY CommentID DESC";
+    $commentST = $pdo->prepare($sql);
+    $commentST->bindValue(1, $_GET['img']);
+    $commentST->execute();
+  }else{
+    $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY Date DESC";
+    $commentST = $pdo->prepare($sql);
+    $commentST->bindValue(1, $_GET['img']);
+    $commentST->execute();
+  }
 
 } catch (PDOException $e) {
   die($e->getMessage());

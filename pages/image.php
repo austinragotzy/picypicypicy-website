@@ -6,6 +6,28 @@
 
   //get image and all info
   if(isset($_GET['img'])){
+    if(isset($_POST['plike'])){
+      $sql = "UPDATE Image SET Likes = Likes + 1 WHERE ImageID = ?";
+      $pdo->beginTransaction();
+      $likeUpST = $pdo->prepare($sql);
+      $likeUpST->bindValue(1, $_GET['img']);
+      $likeUpST->execute();
+      $pdo->commit();
+      $_POST = array();
+    }else if(isset($_POST['pdislike'])){
+      $sql = "UPDATE Image SET Dislikes = Dislikes + 1 WHERE ImageID = ?";
+      $pdo->beginTransaction();
+      $likeUpST = $pdo->prepare($sql);
+      $likeUpST->bindValue(1, $_GET['img']);
+      $likeUpST->execute();
+      $pdo->commit();
+      $_POST = array();
+    }else{
+      $sql = "UPDATE Image SET ViewCount = ViewCount + 1 WHERE ImageID = ?";
+      $likeUpST = $pdo->prepare($sql);
+      $likeUpST->bindValue(1, $_GET['img']);
+      $likeUpST->execute();
+    }
     try {
       $sql = "SELECT * FROM Image WHERE ImageID = ?";
       $st = $pdo->prepare($sql);
@@ -16,6 +38,7 @@
       }else{
         header("location: index.php");
       }
+      $imgPop = intval($imageTup['Likes'])-intval($imageTup['Dislikes']);
 
       $sql = "SELECT * FROM User WHERE UID = ?";
       $st = $pdo->prepare($sql);
@@ -23,10 +46,6 @@
       $st->execute();
       $userTup = $st->fetch();
 
-      $sql = "UPDATE Image SET ViewCount = ViewCount + 1 WHERE ImageID = ?";
-      $likeUpST = $pdo->prepare($sql);
-      $likeUpST->bindValue(1, $_GET['img']);
-      $likeUpST->execute();
     } catch (PDOException $e) {
       die($e->getMessage());
     }
@@ -34,6 +53,7 @@
   }else{
     header("location: index.php");
   }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,6 +81,13 @@
                   <div class="imageBox">
                     <?php echo '<img class="img-rounded mainImg" src="images/'.$imageTup['Path'].'" alt="'.$imageTup['Title'].'" title="'.$imageTup['Title'].'">'; ?>
                   </div><br>
+                  <div class="row vote">
+                    <form class="" action="image.php?img=<?php echo $_GET['img'];?>" method="post">
+                      <button type="submit" name="plike" value="like"><?php echo $imageTup['Likes']; ?> <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                      <button type="submit" name="pdislike" value="dislike"><?php echo $imageTup['Dislikes']; ?> <span class="glyphicon glyphicon-thumbs-down"></span></button>
+                      <p> pop: <?php echo $imgPop; ?></p>
+                    </form>
+                  </div>
                 </div>
                 <div class="col-md-7">
                   <div class="panel panel-default">
