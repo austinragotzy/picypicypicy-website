@@ -3,6 +3,8 @@
 
   include 'connect.php';
 
+
+  //get image and all info
   if(isset($_GET['img'])){
     try {
       $sql = "SELECT * FROM Image WHERE ImageID = ?";
@@ -20,6 +22,11 @@
       $st->bindValue(1, $imageTup['UID']);
       $st->execute();
       $userTup = $st->fetch();
+
+      $sql = "UPDATE Image SET ViewCount = ViewCount + 1 WHERE ImageID = ?";
+      $likeUpST = $pdo->prepare($sql);
+      $likeUpST->bindValue(1, $_GET['img']);
+      $likeUpST->execute();
     } catch (PDOException $e) {
       die($e->getMessage());
     }
