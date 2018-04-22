@@ -7,7 +7,27 @@ if(empty($_SESSION['loggedIn']))
     exit;
 }
 
-include 'getAllImages.php';
+if(!isset($_GET['fav'])){
+  include 'getAllImages.php';
+}else {
+  include 'connect.php';
+
+  try {
+    $sql = 'SELECT * FROM ImageFavorite as f JOIN Image as i ON f.ImageID=i.ImageID WHERE f.UID=?';
+    $imageST = $pdo->prepare($sql);
+    $imageST->bindValue(1, $_SESSION['UID']);
+    $imageST->execute();
+    while($row = $imageST->fetch())
+    {
+        $images[] = $row;
+    }
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
+
+}
+
+
 
 ?>
 

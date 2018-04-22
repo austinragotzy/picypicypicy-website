@@ -17,6 +17,7 @@ if(isset($_SESSION["loggedIn"]))
         <li><a href="picdump.php"><span class="glyphicon glyphicon-th-list"></span> Image List</a></li>
         <li><a href="search.php"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> Upload</a></li>
+        <li><a href="picdump.php?fav=100"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
     </ul>
     </div>
     </div>';
