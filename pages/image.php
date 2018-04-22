@@ -3,6 +3,26 @@
 
   include 'connect.php';
 
+  if(isset($_GET["prv"]) and isset($_GET['img']))
+  {
+
+      $sql = "SELECT * FROM Image WHERE ImageID = ?";
+      $st = $pdo->prepare($sql);
+      $st->bindValue(1, $_GET['img']);
+      $st->execute();
+      $imageTup = $st->fetch();
+
+    if(isset($_SESSION["UID"]) and $imageTup["UID"] == $_SESSION["UID"])
+    {
+      $sql = "UPDATE Image SET Privacy = ? WHERE ImageID = ?";
+      $st = $pdo->prepare($sql);
+      $st->bindValue(1, $_GET["prv"]);
+      $st->bindValue(2, $_GET['img']);
+      $st->execute();
+    }
+  }
+  
+
   if(isset($_GET['img'])){
     try {
       $sql = "SELECT * FROM Image WHERE ImageID = ?";
@@ -27,7 +47,11 @@
   }else{
     header("location: index.php");
   }
+
+  
+
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -87,6 +111,36 @@
                             <td>views:</td>
                             <td><?php echo $imageTup['ViewCount']; ?></td>
                           </tr>
+                          <?php
+                          
+                          if(isset($_SESSION["UID"]) and $imageTup["UID"] == $_SESSION["UID"])
+                          {
+                            
+                            echo '
+                            <tr>
+                              <td>Change Privacy:</td>';
+                              if($imageTup["Privacy"] == 0)
+                              {
+                                  echo'<td><a href="image.php?img='.$imageTup["ImageID"].'&prv=1"  class="btn btn-info" role="button">
+                                  <span class="glyphicon glyphicon-info-sign"></span> Change Image to Private
+                                  </a>
+                                  </td>
+                                  ';
+                              }
+                              else
+                              {
+                                  echo'<td><a href="image.php?img='.$imageTup["ImageID"].'&prv=0" class="btn btn-info" role="button">
+                                  <span class="glyphicon glyphicon-info-sign"></span> Change Image to Public
+                                  </a>
+                                  </td>
+                                  ';
+                              }
+
+                            echo '</tr></form>
+                            ';
+                          }
+                          
+                          ?>
                         </tbody>
                       </table>
                     </div>
