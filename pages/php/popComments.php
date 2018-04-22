@@ -10,7 +10,7 @@ if(isset($_POST['like'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-  $_POST = array();
+  //$_POST = array();
 }
 if(isset($_POST['dislike'])){
   try {
@@ -23,7 +23,7 @@ if(isset($_POST['dislike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-  $_POST = array();
+  //$_POST = array();
 }
  ?>
 <?php //reply Likes
@@ -38,7 +38,7 @@ if(isset($_POST['relike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-  $_POST = array();
+  //$_POST = array();
 }
 if(isset($_POST['redislike'])){
   try {
@@ -51,7 +51,7 @@ if(isset($_POST['redislike'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-  $_POST = array();
+  //$_POST = array();
 }
 ?>
 <?php //this is how we add a comment to database
@@ -71,7 +71,7 @@ if(isset($_POST['redislike'])){
     } catch (PDOException $e) {
       $e->getMessage();
     }
-    $_POST = array();
+    //$_POST = array();
   }
 ?>
 <?php  //this is where we add reply to database
@@ -91,7 +91,7 @@ if(isset($_POST['reply'])){
   } catch (PDOException $e) {
     $e->getMessage();
   }
-  $_POST = array();
+  //$_POST = array();
 }
 ?>
 <?php //populate the comments
@@ -103,7 +103,7 @@ try {
     $commentST->bindValue(1, $_GET['img']);
     $commentST->execute();
   }else if(isset($_POST['best'])){//need to fix this one here
-    $sql = "SELECT * FROM Comments WHERE ImageID = ? ORDER BY SELECT count(*) FROM CommentReply GROUP BY CommentID DESC";
+    $sql = "select * from (SELECT c.CommentID, c.UID, c.ImageID, c.Comment, c.Likes, c.Dislikes, c.Date, count(c.CommentID) as rep FROM Comments as c JOIN CommentReply as r ON c.CommentID=r.CommentID WHERE ImageID = ? GROUP BY CommentID) as monster ORDER BY rep+Likes-Dislikes DESC";
     $commentST = $pdo->prepare($sql);
     $commentST->bindValue(1, $_GET['img']);
     $commentST->execute();
