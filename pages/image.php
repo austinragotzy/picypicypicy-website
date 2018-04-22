@@ -10,14 +10,14 @@ if(isset($_POST["addTag"]))
   }
   else
   {
-    $sql = "SELECT * FROM tags WHERE Tag = '".$_POST['addTag']."'";
+    $sql = "SELECT * FROM Tags WHERE Tag = '".$_POST['addTag']."'";
     $tags = $pdo->prepare($sql);
-    
+
     $tags->execute();
-    
+
     if($row = $tags->fetch())
     {
-      $sql = "SELECT * FROM imagetags WHERE ImageID = ? AND TagID = ?";
+      $sql = "SELECT * FROM ImageTags WHERE ImageID = ? AND TagID = ?";
       $tags = $pdo->prepare($sql);
       $tags->bindValue(1, $_GET['img']);
       $tags->bindValue(2,$row["TagID"]);
@@ -25,7 +25,7 @@ if(isset($_POST["addTag"]))
 
       if(!$imageTag = $tags->fetch())
       {
-        $sql = "INSERT INTO imagetags (ImageID,TagID) VALUES (?,?)";
+        $sql = "INSERT INTO ImageTags (ImageID,TagID) VALUES (?,?)";
         $tags = $pdo->prepare($sql);
         $tags->bindValue(1, $_GET['img']);
         $tags->bindValue(2,$row["TagID"]);
@@ -41,7 +41,7 @@ if(isset($_POST["addTag"]))
 
       $id = $pdo->lastInsertId();
 
-      $sql = "INSERT INTO imagetags (ImageID,TagID) VALUES (?,?)";
+      $sql = "INSERT INTO ImageTags (ImageID,TagID) VALUES (?,?)";
       $tags = $pdo->prepare($sql);
       $tags->bindValue(1, $_GET['img']);
       $tags->bindValue(2,$id);
@@ -50,46 +50,48 @@ if(isset($_POST["addTag"]))
     }
   }
 
-  
+
 
 }
-
-  if(isset($_POST['delete']))
-  {
-    $sql = "SELECT * from Comments where ImageID = ?";
-    $comments = $pdo->prepare($sql);
-    $st->bindValue(1, $_GET['img']);
-    $comments->execute();
-
-    while($row = $comments->fetch())
+  if(isset($_POST['delete'])){
+    if($_POST['delete']=="Delete Image")
     {
-        $comment[] = $row;
-    }
+      $sql = "SELECT * from Comments where ImageID = ?";
+      $comments = $pdo->prepare($sql);
+      $comments->bindValue(1, $_GET['img']);
+      $comments->execute();
 
-    foreach($comment as $deleteComment)
-    {
-      $sql = "DELETE FROM CommentReply where CommentID = ".$deleteComment["CommentID"];
+      while($row = $comments->fetch())
+      {
+          $comment[] = $row;
+      }
+
+      foreach($comment as $deleteComment)
+      {
+        $sql = "DELETE FROM CommentReply where CommentID = ".$deleteComment["CommentID"];
+        $delete = $pdo->prepare($sql);
+        $delete->execute();
+
+        $sql = "DELETE FROM Comments where CommentID = ".$deleteComment["CommentID"];
+        $delete = $pdo->prepare($sql);
+        $delete->execute();
+      }
+
+      $sql = "DELETE FROM ImageFavorite where ImageID = ?";
       $delete = $pdo->prepare($sql);
+      $delete->bindValue(1, $_GET['img']);
       $delete->execute();
 
-      $sql = "DELETE FROM Comments where CommentID = ".$deleteComment["CommentID"];
+      $sql = "DELETE FROM Image where ImageID = ?";
       $delete = $pdo->prepare($sql);
+      $delete->bindValue(1, $_GET['img']);
       $delete->execute();
+
+      header("location: profile.php");
+
     }
-
-    $sql = "DELETE FROM ImageFavorite where ImageID = ?";
-    $delete = $pdo->prepare($sql);
-    $delete->bindValue(1, $_GET['img']);
-    $delete->execute();
-
-    $sql = "DELETE FROM Image where ImageID = ?";
-    $delete = $pdo->prepare($sql);
-    $delete->bindValue(1, $_GET['img']);
-    $delete->execute();
-
-    header("location: profile.php");
-
   }
+
 
 
   if(isset($_GET["prv"]) and isset($_GET['img']))
@@ -110,7 +112,7 @@ if(isset($_POST["addTag"]))
       $st->execute();
     }
   }
-  
+
 
   if(isset($_GET['img'])){
     try {//favorite checks and set/delete
@@ -194,20 +196,20 @@ if(isset($_POST["addTag"]))
       die($e->getMessage());
     }
 
-    $sql = "SELECT * FROM imagetags inner join tags on imagetags.TagId = Tags.TagID where ImageID = ?";
-    $st = $pdo->prepare($sql);
-    $st->bindValue(1, $_GET['img']);
-    $st->execute();
+    $sql = "SELECT * FROM ImageTags inner join Tags on ImageTags.TagId = Tags.TagID where ImageID = ?";
+    $tagst = $pdo->prepare($sql);
+    $tagst->bindValue(1, $_GET['img']);
+    $tagst->execute();
 
-    while($tag = $st->fetch()){
-      $imageTags[] = $tag;
-    }
+    // while($tag = $st->fetch()){
+    //   $imageTags[] = $tag;
+    // }
 
   }else{
     header("location: index.php");
   }
 
-  
+
 
 ?>
 
@@ -274,7 +276,13 @@ if(isset($_POST["addTag"]))
                           </tr>
                           <tr>
                             <td>Tags:</td>
-                            <td></td>
+                            <td><?php
+                            // var_dump($tagst->fetch());
+                            while($tag = $tagst->fetch())
+                            {
+                              echo $tag["Tag"].", ";
+                            }
+                            ?></td>
                           </tr>
                           <tr>
                             <td>Likes/Dislikes:</td>
@@ -285,10 +293,10 @@ if(isset($_POST["addTag"]))
                             <td><?php echo $imageTup['ViewCount']; ?></td>
                           </tr>
                           <?php
-                          
+
                           if(isset($_SESSION["UID"]) and $imageTup["UID"] == $_SESSION["UID"])
                           {
-                            
+
                             echo '
                             <tr>
                               <td>Change Privacy:</td>';
@@ -320,21 +328,8 @@ if(isset($_POST["addTag"]))
                               </form>
                             </tr>
                             ';
-
-                            echo'
-                            <tr>
-                              <td>Tags:</td>';
-                            
-                            foreach($imageTags as $tag)
-                            {
-                              echo '<td>'.$tag["Tag"].'</td>';
-                            }
-                              
-                            echo '</tr>
-                            
-                            ';
                           }
-                          
+
                           ?>
                         </tbody>
                       </table>
@@ -345,7 +340,7 @@ if(isset($_POST["addTag"]))
             </div>
           </div>
 
-           
+
             <div class="panel panel-danger spaceabove">
               <div class="panel-heading"><h4>Picture Tags</h4></div>
               <div class="panel-body">

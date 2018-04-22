@@ -21,7 +21,7 @@ if(isset($_POST['delete']))
 
 if(isset($_POST['deleteReply']))
 {
-    
+
   try{
     $pdo->beginTransaction();
     $sql = "DELETE FROM CommentReply where CommentID = ".$_POST['deleteReply'];
@@ -195,8 +195,7 @@ while($commentTup = $commentST->fetch()){
           {
             echo '<br><button type="submit" name="delete" value="'.$commentTup['CommentID'].'"> DELETE</button>';
           }
-         '
-        </form>
+         echo '</form>
       </div>
     </summary>';
     while($replyTup = $replyST->fetch()){
@@ -225,7 +224,7 @@ while($commentTup = $commentST->fetch()){
           {
             echo '<br><button type="submit" name="deleteReply" value="'.$commentTup['CommentID'].'"> DELETE</button>';
           }
-         '</form>
+         echo '</form>
       </div>
         </div>';
     }

@@ -16,6 +16,19 @@ if(isset($_POST['search']))
 
 }
 
+if(isset($_GET['tag'])){
+  $images = null;
+  $sql = 'SELECT * FROM ImageTags JOIN Image on ImageTags.ImageID=Image.ImageID where TagID = ?';
+  $imageST = $pdo->prepare($sql);
+  $imageST->bindValue(1, $_GET['tag']);
+  $imageST->execute();
+  while($row = $imageST->fetch())
+  {
+      $images[] = $row;
+  }
+
+}
+
 if(!isset($_GET['fav'])){
 
 }else {
@@ -92,7 +105,7 @@ if(!isset($_GET['fav'])){
                             <span class="glyphicon glyphicon-info-sign"></span> View
                             </a>
                         </p>
-                        
+
                         </div>
                     </div>
                     </div>';
@@ -103,8 +116,8 @@ if(!isset($_GET['fav'])){
             {
               echo "NO IMAGES";
             }
-                    
-                
+
+
             ?>
             </div>
           </div>

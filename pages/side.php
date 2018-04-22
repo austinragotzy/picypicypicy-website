@@ -1,5 +1,6 @@
 <?php
 include 'connect.php';
+include 'toptags.php';
 
 if(isset($_SESSION["loggedIn"]))
 {
@@ -19,6 +20,15 @@ if(isset($_SESSION["loggedIn"]))
         <li><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> Upload</a></li>
         <li><a href="picdump.php?fav=100"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
     </ul>
+    <hr>
+    <div>';
+      for ($i=0; $i < 3 ; $i++) {
+        for($i=0; $i<3; $i++) {
+          if($t = $topTags[$i])
+          echo '<a href="picdump.php?tag='.$t['TID'].'">'.$t['Tag'].'</a>,';
+      }
+    }
+    echo '</div>
     </div>
     </div>';
 }

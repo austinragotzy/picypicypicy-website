@@ -9,7 +9,16 @@ session_start();
   } catch (PDOException $e) {
     $e->getMessage();
   }
+  $x = 0;
+  //var_dump($imgST->fetch());
+  while($row = $imgST->fetch()){
+    if(!($row['Privacy']==="1")){
+      $pic[] = $row;
+      $x++;
+    }
+  }
 
+  include 'toptags.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +45,7 @@ session_start();
             <div class="row">
               <?php
                 for($i=0; $i<3; $i++){
-                  $img = $imgST->fetch();
+                  $img = $pic[$i];
                   echo '<div class="col-md-4">
                     <a href="image.php?img='.$img['ImageID'].'" class="imgWrap">
                       <img class="img-rounded" src="images/'.$img['Path'].'" alt="'.$img['Title'].'" title="'.$img['Title'].'">
@@ -51,10 +60,12 @@ session_start();
           <div class="panel-heading">Picyest Tags</div>
           <div class="panel-body">
             <p class="tags">
-              <a href="#">tag</a>,
-              <a href="#">taggy</a>,
-              <a href="#">taggle</a>,
-              <a href="#">tags</a>
+              <?php
+                for($i=0; $i<3; $i++) {
+                  if($t = $topTags[$i])
+                  echo '<a href="picdump.php?tag='.$t['TID'].'">'.$t['Tag'].'</a>,';
+                }
+              ?>
             </p>
           </div>
         </div>
