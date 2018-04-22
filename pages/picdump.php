@@ -53,7 +53,7 @@ include 'getAllImages.php';
                     echo'<div class="col-md-6 text-center">
                     <div class="thumbnail">
                         <a href = "image.php?img='.$image["ImageID"].'">
-                        <img src = "images/'.$image["Path"].'" alt="..." class="img-thumbnail">
+                        <img src = "images/'.$image["Path"].'" alt="'.$image['Title'].'" title="'.$image['Title'].'" class="img-thumbnail">
                         </a>
                         <div class="caption">
                         <p>
