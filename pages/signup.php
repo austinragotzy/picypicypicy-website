@@ -23,7 +23,7 @@
         $sql = "INSERT INTO User (Username, Password, Email, FirstName, LastName) VALUES (?, ?, ?, ?, ?)";
         $st = $pdo->prepare($sql);
         $st->bindValue(1, $userName);
-        $st->bindValue(2, $password);
+        $st->bindValue(2, hash('ripemd160',$password));
         $st->bindValue(3, $email);
         $st->bindValue(4, $fName);
         $st->bindValue(5, $lName);

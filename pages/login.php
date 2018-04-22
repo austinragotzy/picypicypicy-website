@@ -11,7 +11,7 @@
       $sql = "SELECT * FROM User WHERE UserName = ? and password = ?";
       $st = $pdo->prepare($sql);
       $st->bindValue(1, $userName);
-      $st->bindValue(2, $pass);
+      $st->bindValue(2, hash('ripemd160',$pass));
       $st->execute();
 
       if($uAccount = $st->fetch()){
