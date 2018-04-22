@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['loggedIn']))
-{
-    header('Location: login.php');
-    exit;
-}
+
 
 include 'getAllImages.php';
 
