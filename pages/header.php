@@ -14,7 +14,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">tr&#233; Picy</a> 
+            <a class="navbar-brand" href="#">tr&#233; Picy</a>
           </div>
           <ul class="nav navbar-nav pull-right">
             <?php
@@ -43,7 +43,7 @@
           </ul>
         </div>
       </nav>
-      <h1><img src="images/icon.png" alt="Picy! Picy! Picy!"></h1>
+      <h1><img src="images/icon.png" title="picy! picy! picy!" alt="Picy! Picy! Picy!"></h1>
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <ul class="nav navbar-nav">

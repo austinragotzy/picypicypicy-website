@@ -1,5 +1,14 @@
 <?php
 session_start();
+  include 'connect.php';
+
+  try {
+    $sql = "SELECT * FROM Image ORDER BY ViewCount DESC";
+    $imgST = $pdo->prepare($sql);
+    $imgST->execute();
+  } catch (PDOException $e) {
+    $e->getMessage();
+  }
 
 ?>
 <!DOCTYPE html>
@@ -25,24 +34,16 @@ session_start();
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-4">
-                <a href="image.php?img=1" class="imgWrap">
-                  <img class="img-rounded" src="images/brokeCar.jpg" alt="broken car">
-                  <p class="imgDets">this car is busted <br>Owner: it aint mine</p>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <a href="image.php?img=2" class="imgWrap">
-                  <img class="img-rounded" src="images/brokeChair.jpg" alt="broken chair">
-                  <p class="imgDets">this chair is busted <br>Owner: it aint mine</p>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <a href="image.php?img=3" class="imgWrap">
-                  <img class="img-rounded" src="images/brokeHouse.jpg" alt="broken house">
-                  <p class="imgDets">this house is busted <br>Owner: ...that ones mine</p>
-                </a>
-              </div>
+              <?php
+                for($i=0; $i<3; $i++){
+                  $img = $imgST->fetch();
+                  echo '<div class="col-md-4">
+                    <a href="image.php?img='.$img['ImageID'].'" class="imgWrap">
+                      <img class="img-rounded" src="images/'.$img['Path'].'" alt="'.$img['Title'].'" title="'.$img['Title'].'">
+                    </a>
+                  </div>';
+                }
+              ?>
             </div>
           </div>
         </div>
