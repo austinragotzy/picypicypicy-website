@@ -2,6 +2,95 @@
   session_start();
 
   include 'connect.php';
+if(isset($_POST["addTag"]))
+{
+  if($_POST["addTag"] == "")
+  {
+    $error = "tag cannot be empty";
+  }
+  else
+  {
+    $sql = "SELECT * FROM tags WHERE Tag = '".$_POST['addTag']."'";
+    $tags = $pdo->prepare($sql);
+    
+    $tags->execute();
+    
+    if($row = $tags->fetch())
+    {
+      $sql = "SELECT * FROM imagetags WHERE ImageID = ? AND TagID = ?";
+      $tags = $pdo->prepare($sql);
+      $tags->bindValue(1, $_GET['img']);
+      $tags->bindValue(2,$row["TagID"]);
+      $tags->execute();
+
+      if(!$imageTag = $tags->fetch())
+      {
+        $sql = "INSERT INTO imagetags (ImageID,TagID) VALUES (?,?)";
+        $tags = $pdo->prepare($sql);
+        $tags->bindValue(1, $_GET['img']);
+        $tags->bindValue(2,$row["TagID"]);
+        $tags->execute();
+      }
+    }
+    else
+    {
+      $sql = "INSERT INTO Tags (Tag) VALUES (?)";
+      $tags = $pdo->prepare($sql);
+      $tags->bindValue(1, $_POST['addTag']);
+      $tags->execute();
+
+      $id = $pdo->lastInsertId();
+
+      $sql = "INSERT INTO imagetags (ImageID,TagID) VALUES (?,?)";
+      $tags = $pdo->prepare($sql);
+      $tags->bindValue(1, $_GET['img']);
+      $tags->bindValue(2,$id);
+      $tags->execute();
+
+    }
+  }
+
+  
+
+}
+
+  if(isset($_POST['delete']))
+  {
+    $sql = "SELECT * from Comments where ImageID = ?";
+    $comments = $pdo->prepare($sql);
+    $st->bindValue(1, $_GET['img']);
+    $comments->execute();
+
+    while($row = $comments->fetch())
+    {
+        $comment[] = $row;
+    }
+
+    foreach($comment as $deleteComment)
+    {
+      $sql = "DELETE FROM CommentReply where CommentID = ".$deleteComment["CommentID"];
+      $delete = $pdo->prepare($sql);
+      $delete->execute();
+
+      $sql = "DELETE FROM Comments where CommentID = ".$deleteComment["CommentID"];
+      $delete = $pdo->prepare($sql);
+      $delete->execute();
+    }
+
+    $sql = "DELETE FROM ImageFavorite where ImageID = ?";
+    $delete = $pdo->prepare($sql);
+    $delete->bindValue(1, $_GET['img']);
+    $delete->execute();
+
+    $sql = "DELETE FROM Image where ImageID = ?";
+    $delete = $pdo->prepare($sql);
+    $delete->bindValue(1, $_GET['img']);
+    $delete->execute();
+
+    header("location: profile.php");
+
+  }
+
 
   if(isset($_GET["prv"]) and isset($_GET['img']))
   {
@@ -103,6 +192,15 @@
 
     } catch (PDOException $e) {
       die($e->getMessage());
+    }
+
+    $sql = "SELECT * FROM imagetags inner join tags on imagetags.TagId = Tags.TagID where ImageID = ?";
+    $st = $pdo->prepare($sql);
+    $st->bindValue(1, $_GET['img']);
+    $st->execute();
+
+    while($tag = $st->fetch()){
+      $imageTags[] = $tag;
     }
 
   }else{
@@ -213,6 +311,28 @@
 
                             echo '</tr></form>
                             ';
+
+                            echo'
+                            <tr>
+                              <td>Delete:</td>
+                              <form method = "POST">
+                                <td><input type = "submit" name = "delete" value = "Delete Image"></td>
+                              </form>
+                            </tr>
+                            ';
+
+                            echo'
+                            <tr>
+                              <td>Tags:</td>';
+                            
+                            foreach($imageTags as $tag)
+                            {
+                              echo '<td>'.$tag["Tag"].'</td>';
+                            }
+                              
+                            echo '</tr>
+                            
+                            ';
                           }
                           
                           ?>
@@ -224,6 +344,21 @@
               </div>
             </div>
           </div>
+
+           
+            <div class="panel panel-danger spaceabove">
+              <div class="panel-heading"><h4>Picture Tags</h4></div>
+              <div class="panel-body">
+                <div class="row">
+                <?php echo'<form method = "POST" action =   "image.php?img='.$_GET["img"].'">'?>
+                  <label for = "addLabel">Add Tag:</label>
+                  <input type = "text" name = "addTag">
+                  <input type = "submit">
+
+                </div>
+              </div>
+            </div>
+
           <?php include 'comments.php'; ?>
         </div>
       </div>

@@ -30,7 +30,7 @@
             ?>
 
             <li><a href="signup.php">Sign Up</a></li>
-            <form class="navbar-form navbar-left" action="index.php" method="post">
+            <form class="navbar-form navbar-left" action="picdump.php" method="post">
               <div class="input-group">
                 <div class="form-group">
                   <input class="form-control" type="text" name="search" placeholder="Search">

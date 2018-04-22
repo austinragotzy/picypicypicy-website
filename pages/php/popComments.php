@@ -1,4 +1,42 @@
 <?php //this is how we update the like/dislike for comments in database
+if(isset($_POST['delete']))
+{
+
+  try{
+    $pdo->beginTransaction();
+    $sql = "DELETE FROM CommentReply where CommentID = ".$_POST['delete'];
+    $delete = $pdo->prepare($sql);
+    $delete->execute();
+    $sql = "DELETE FROM Comments where CommentID = ".$_POST['delete'];
+    $delete = $pdo->prepare($sql);
+    $delete->execute();
+    $pdo->commit();
+
+  }catch(PDOException $e)
+  {
+    echo "IT BROKE";
+    $pdo->rollback();
+  }
+}
+
+if(isset($_POST['deleteReply']))
+{
+    
+  try{
+    $pdo->beginTransaction();
+    $sql = "DELETE FROM CommentReply where CommentID = ".$_POST['deleteReply'];
+    $delete = $pdo->prepare($sql);
+    $delete->execute();
+    $pdo->commit();
+
+  }catch(PDOException $e)
+  {
+    echo "IT BROKE";
+    $pdo->rollback();
+  }
+}
+
+
 if(isset($_POST['like'])){
   try {
     $sql = "UPDATE Comments SET Likes = Likes + 1 WHERE CommentID = ?";
@@ -75,7 +113,7 @@ if(isset($_POST['redislike'])){
   }
 ?>
 <?php  //this is where we add reply to database
-if(isset($_POST['reply'])){
+if(isset($_POST['reply']) && isset($_POST['replybtn'])){
   try {
     $sql = "INSERT INTO CommentReply (UID, CommentID, Comment,Likes,Dislikes,Date) VALUES (?,?,?,?, ?, ?)";
     $pdo->beginTransaction();
@@ -119,6 +157,7 @@ try {
 }
 while($commentTup = $commentST->fetch()){
   try {
+
     $sql = "SELECT count(ReplyID) as replies FROM CommentReply WHERE CommentID = ?";
     $numReplyST = $pdo->prepare($sql);
     $numReplyST->bindValue(1, $commentTup['CommentID']);
@@ -151,6 +190,12 @@ while($commentTup = $commentST->fetch()){
           <button type="submit" name="dislike" value="'.$commentTup['CommentID'].'">'.$commentTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
           <p> pop: '.$pop.'</p>
           <p class="pull-right">'.$numRep['replies'].' replies</p>
+          ';
+          if($commenterTup["UID"] == $_SESSION["UID"])
+          {
+            echo '<br><button type="submit" name="delete" value="'.$commentTup['CommentID'].'"> DELETE</button>';
+          }
+         '
         </form>
       </div>
     </summary>';
@@ -175,7 +220,12 @@ while($commentTup = $commentST->fetch()){
           <button type="submit" name="relike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Likes'].' <span class="glyphicon glyphicon-thumbs-up"></span></button>
           <button type="submit" name="redislike" value="'.$replyTup['ReplyID'].'">'.$replyTup['Dislikes'].' <span class="glyphicon glyphicon-thumbs-down"></span></button>
           <p> pop: '.$rpop.'</p>
-        </form>
+          ';
+          if($replyTup["UID"] == $_SESSION["UID"])
+          {
+            echo '<br><button type="submit" name="deleteReply" value="'.$commentTup['CommentID'].'"> DELETE</button>';
+          }
+         '</form>
       </div>
         </div>';
     }
